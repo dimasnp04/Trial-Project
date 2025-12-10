@@ -1,12 +1,12 @@
 describe('TS01 Login', () => {
-  it('TC001 Access Login Username and Password Valid', () => {
+  it('TC001 Access Login Valid Username and Password', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
     cy.get('[name="username"]').type('Admin').should('have.value', 'Admin')
     cy.get('[name="password"]').type('admin123').should('have.value', 'admin123')
     cy.get('[type="submit"]').click()
     cy.url().should('include', 'dashboard')
   })
-  it('TC002 Access Login Username Invalid and Password Valid', () => {
+  it('TC002 Access Login Invalid Username and Valid Password', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
     cy.get('[name="username"]').type('dimas').should('not.have.value', 'Admin')
     cy.get('[name="password"]').type('admin123').should('have.value', 'admin123')
@@ -14,7 +14,7 @@ describe('TS01 Login', () => {
     cy.get('.oxd-alert').should('contain', 'Invalid credentials')
     cy.url().should('include', 'login')
   })
-  it('TC003 Access Login Username Valid and Password Invalid', () => {
+  it('TC003 Access Login Valid Username and Invalid Password', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
     cy.get('[name="username"]').type('Admin').should('have.value', 'Admin')
     cy.get('[name="password"]').type('dimas456').should('not.have.value', 'admin123')
@@ -22,7 +22,7 @@ describe('TS01 Login', () => {
     cy.get('.oxd-alert').should('contain', 'Invalid credentials')
     cy.url().should('include', 'login')
   })
-  it('TC004 Access Login Username and Password Invalid', () => {
+  it('TC004 Access Login Invalid Username and Password', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
     cy.get('[name="username"]').type('dimas').should('not.have.value', 'Admin')
     cy.get('[name="password"]').type('dimas123').should('not.have.value', 'admin123')
@@ -30,7 +30,7 @@ describe('TS01 Login', () => {
     cy.get('.oxd-alert').should('contain', 'Invalid credentials')
     cy.url().should('include', 'login')
   })
-  it('TC005 Access Login Username Valid and Blank Password', () => {
+  it('TC005 Access Login Valid Username and Blank Password', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
     cy.get('[name="username"]').type('Admin').should('have.value', 'Admin')
     cy.get('[name="password"]').should('not.have.value', 'admin123')
@@ -38,7 +38,7 @@ describe('TS01 Login', () => {
     cy.get('.oxd-input-group > .oxd-text').should('contain', 'Required')
     cy.url().should('include', 'login')
   })
-  it('TC006 Access Login Blank Username and Password Valid', () => {
+  it('TC006 Access Login Blank Username and Valid Password', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
     cy.get('[name="username"]').should('not.have.value', 'Admin')
     cy.get('[name="password"]').type('admin123').should('have.value', 'admin123')
@@ -46,7 +46,7 @@ describe('TS01 Login', () => {
     cy.get('.oxd-input-group > .oxd-text').should('contain', 'Required')
     cy.url().should('include', 'login')
   })
-  it('TC007 Access Login Username Invalid and Blank Password', () => {
+  it('TC007 Access Login Invalid Username and Blank Password', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
     cy.get('[name="username"]').type('Dimas').should('not.have.value', 'Admin')
     cy.get('[name="password"]').should('not.have.value', 'admin123')
@@ -54,7 +54,7 @@ describe('TS01 Login', () => {
     cy.get('.oxd-input-group > .oxd-text').should('contain', 'Required')
     cy.url().should('include', 'login')
   })
-  it('TC008 Access Login Blank Username and Password Invalid', () => {
+  it('TC008 Access Login Blank Username and Invalid Password', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
     cy.get('[name="username"]').should('not.have.value', 'Admin')
     cy.get('[name="password"]').type('dimas123').should('not.have.value', 'admin123')

@@ -1,0 +1,8 @@
+{
+"validUsername":"Admin",
+"invalidUsername":"dimas",
+"validPassword":"admin123",
+"invalidPassword":"dimas123",
+"blankUsername":"",
+"blankPassword":""
+}
