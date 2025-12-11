@@ -4,5 +4,9 @@
 "validPassword":"admin123",
 "invalidPassword":"dimas123",
 "blankUsername":"",
-"blankPassword":""
+"blankPassword":"",
+
+"popOutInvalidCredentials":"Invalid credentials",
+"popOutRequired":"Required"
 }
+

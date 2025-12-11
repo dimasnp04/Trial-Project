@@ -38,11 +38,41 @@ class loginPage{
     interceptLogin() {
     cy.intercept('GET', 'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login').as('login')
     }
-    getAlertInvalidCredentials() {
-    cy.get('.oxd-alert').should('contain', 'Invalid credentials')
+    getAlertInv(invalidCredentialsData) {
+    cy.get('.oxd-alert').should('contain', invalidCredentialsData)
     }
-    getAlertRequired() {
-    cy.get('.oxd-input-group > .oxd-text').should('contain', 'Required')
+    getAlertReq(RequiredData) {
+    cy.get('.oxd-input-group > .oxd-text').should('contain', RequiredData)
+    }
+    waitSubUnitStatusCodeis200() {
+    cy.wait('@subunit').its('response.statusCode').should('equal', 200)
+    }
+    waitMessagesStatusCodeis304() {
+    cy.wait('@messages').its('response.statusCode').should('equal', 304)
+    }
+    waitValidateStatusCodeis302() {
+    cy.wait('@validate').its('response.statusCode').should('equal', 302)
+    }
+    waitValidateStatusMessageisFound() {
+    cy.wait('@validate').its('response.statusMessage').should('equal', 'Found')
+    }
+    waitLoginisUnresponse() {
+    cy.wait('@login').should('include.all.keys', ['request', 'response'])
+    }
+    waitLoginStatusCodeis200() {
+    cy.wait('@login').its('response.statusCode').should('equal', 200)
+    }
+    waitLoginStatusMessageisOK() {
+    cy.wait('@login').its('response.statusMessage').should('equal', 'OK')
+    }
+    waitMessagesStatusMessageisOK() {
+    cy.wait('@messages').its('response.statusMessage').should('equal', 'OK')
+    }
+    waitMessagesStatusCodeis200() {
+    cy.wait('@messages').its('response.statusCode').should('equal', 200)
+    }
+    waitMessagesStatusMessageisNotModified() {
+    cy.wait('@messages').its('response.statusMessage').should('equal', 'Not Modified')
     }
     directToDashboard() {
     cy.url().should('include', 'dashboard')
