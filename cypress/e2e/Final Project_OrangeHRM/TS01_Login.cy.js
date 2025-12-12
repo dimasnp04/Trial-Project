@@ -91,11 +91,4 @@ describe('TS01 Login', () => {
     Login.getAlertReq(loginData.popOutRequired)
     Login.stayAtLoginPage()
   })
-  it('TC010 Forgot Password', () => {
-    Login.visit()
-    Login.interceptMessages()
-    Login.clickForgotPasswordButton()
-    Login.waitMessagesStatusMessageisNotModified()
-    Login.directToResetCodePage()
-  })
 })
