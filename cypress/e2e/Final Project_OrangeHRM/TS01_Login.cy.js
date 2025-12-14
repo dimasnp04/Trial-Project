@@ -1,6 +1,7 @@
 import loginPage from "../../support/pagesOrangeHRM/loginPage"
 import loginData from "../../fixtures/DataOrangeHRM/loginData.json"
 const Login = loginPage
+
 describe('TS01 Login', () => {
   it('TC001 Access Login Valid Username and Password', () => {
     Login.visit()

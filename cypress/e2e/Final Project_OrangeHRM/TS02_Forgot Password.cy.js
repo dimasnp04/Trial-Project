@@ -1,6 +1,7 @@
-import loginPage from "../../support/pagesOrangeHRM/loginPage"
-import loginData from "../../fixtures/DataOrangeHRM/loginData.json"
-const Login = loginPage
+import forgotPasswordPage from "../../support/pagesOrangeHRM/forgotPasswordPage"
+import forgotPasswordData from "../../fixtures/DataOrangeHRM/forgotPasswordData.json"
+const Login = forgotPasswordPage
+
 describe('TS02 Forgot Password', () => {  
   it('TC001 Access Forgot Password Valid Username', () => {
     Login.visit()
@@ -8,10 +9,10 @@ describe('TS02 Forgot Password', () => {
     Login.clickForgotPasswordButton()
     Login.waitMessagesStatusMessageisNotModified()
     Login.directToResetCodePage()
-    cy.get('.oxd-input').type('Admin').should('have.value', 'Admin')
-    cy.get('.oxd-button--secondary').click()
-    cy.get('.oxd-text--h6').should('contain', 'Reset Password link sent successfully')
-    cy.url().should('include', 'sendPasswordReset')
+    Login.inputValidUsername(forgotPasswordData.validUsername)
+    Login.clickResetPasswordButton()
+    Login.getNotify(forgotPasswordData.notifyResetPasswordLinkSentSuccesfully)
+    Login.directToNotifyResetPasswordPage()
   })
   it('TC002 Access Forgot Password Invalid Username', () => {
     Login.visit()
@@ -19,10 +20,10 @@ describe('TS02 Forgot Password', () => {
     Login.clickForgotPasswordButton()
     Login.waitMessagesStatusMessageisNotModified()
     Login.directToResetCodePage()
-    cy.get('.oxd-input').type('dimas').should('not.have.value', 'Admin')
-    cy.get('.oxd-button--secondary').click()
-    cy.get('.oxd-text--h6').should('contain', 'Reset Password link sent successfully')
-    cy.url().should('include', 'sendPasswordReset')
+    Login.inputInvalidUsername(forgotPasswordData.invalidUsername)
+    Login.clickResetPasswordButton()
+    Login.getNotify(forgotPasswordData.notifyResetPasswordLinkSentSuccesfully)
+    Login.directToNotifyResetPasswordPage()
   })
     it('TC003 Access Forgot Password Blank Username', () => {
     Login.visit()
@@ -30,9 +31,9 @@ describe('TS02 Forgot Password', () => {
     Login.clickForgotPasswordButton()
     Login.waitMessagesStatusMessageisNotModified()
     Login.directToResetCodePage()
-    cy.get('.oxd-input').should('not.have.value', 'Admin')
-    cy.get('.oxd-button--secondary').click()
-    cy.get('.oxd-input-group > .oxd-text').should('contain', 'Required')
-    cy.url().should('include', 'ResetCode')
+    Login.inputBlankUsername(forgotPasswordData.blankUsername)
+    Login.clickResetPasswordButton()
+    Login.getAlertReq(forgotPasswordData.popOutRequired)
+    Login.stayAtRequestPasswordPage()
   })
 })

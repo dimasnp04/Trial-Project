@@ -3,28 +3,25 @@ class loginPage{
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')    
     }
     inputValidUsername(validUserData){
-        cy.get('[name="username"]').type(validUserData).should('have.value', 'Admin')
+        cy.get('[name="username"]').type(validUserData).should('have.value', validUserData)
     }
     inputValidPassword(validPassData){
-        cy.get('[name="password"]').type(validPassData).should('have.value', 'admin123')
+        cy.get('[name="password"]').type(validPassData).should('have.value', validPassData)
     }
     inputInvalidUsername(invalidUserData){
-        cy.get('[name="username"]').type(invalidUserData).should('not.have.value', 'Admin')
+        cy.get('[name="username"]').type(invalidUserData).should('have.value', invalidUserData)
     }
     inputInvalidPassword(invalidPassData){
-         cy.get('[name="password"]').type(invalidPassData).should('not.have.value', 'admin123')
+         cy.get('[name="password"]').type(invalidPassData).should('have.value', invalidPassData)
     }
     inputBlankUsername(blankUserData){
-        cy.get('[name="username"]').should('not.have.value', 'Admin')
+        cy.get('[name="username"]').should('have.value', "")
     }
     inputBlankPassword(blankPassData){
-        cy.get('[name="password"]').should('not.have.value', 'admin123')
+        cy.get('[name="password"]').should('have.value', "")
     }
     clickLoginButton(){
         cy.get('[type="submit"]').click()
-    }
-    clickForgotPasswordButton(){
-        cy.get('.orangehrm-login-forgot > .oxd-text').click()
     }
     interceptSubUnit() {
         cy.intercept('GET', 'https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/dashboard/employees/subunit').as('subunit')
@@ -79,9 +76,6 @@ class loginPage{
     }
     stayAtLoginPage() {
     cy.url().should('include', 'login')
-    }
-    directToResetCodePage() {
-    cy.url().should('include', 'ResetCode')
     }
 }
 

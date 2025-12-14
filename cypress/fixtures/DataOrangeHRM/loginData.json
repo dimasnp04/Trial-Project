@@ -5,7 +5,6 @@
 "invalidPassword":"dimas123",
 "blankUsername":"",
 "blankPassword":"",
-
 "popOutInvalidCredentials":"Invalid credentials",
 "popOutRequired":"Required"
 }
